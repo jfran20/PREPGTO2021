@@ -10,7 +10,7 @@ Diputaciones <- function(PREP){
     "DISTRITO_LOCAL" = DISTRITO_LOCAL,
     "PAN"            = PAN,
     "PRI"            = PRI + ifelse(is.na(PRI_PRD/2),0,PRI_PRD/2),
-    "PRD"            = PRD ,
+    "PRD"            = PRD + ifelse(is.na(PRI_PRD/2),0,PRI_PRD/2),
     "MORENA"         = MORENA,
     "PVEM"           = PVEM,
     "MC"             = MC,
@@ -42,8 +42,7 @@ Diputaciones <- function(PREP){
   PorAsignar      <- 36 - with(Diputados,sum(RepProp,DistGanados,na.rm = T))
 
   # Asignar por el cociente natural ----
-  
-  VEEM            <- PREP %>% filter(Partido != "CAND_IND_1") %>% pull("Votos") %>% sum(.,na.rm = T) #Votacion valida emitida
+  VEEM            <- PREP %>% filter(!(Partido  %in% c("NO_REGISTRADOS","NULOS"))) %>% pull("Votos") %>% sum(.,na.rm = T) #Votacion valida emitida
   CocienteNatural <- VEEM/PorAsignar
   
   Diputados %<>% mutate(xCocienteNatural = floor(Votos/CocienteNatural), 
@@ -64,7 +63,10 @@ Diputaciones <- function(PREP){
   
   Diputados %<>% mutate(TotalSinR = RepProp + DistGanados + xCocienteNatural + xResto,
                         Excedentes = ifelse(((TotalSinR/36) - PorcentajeVVE) > 0.08,
-                                            -(TotalSinR - ceiling(PorcentajeVVE*36)),0))
+                                            ifelse((TotalSinR - ceiling(PorcentajeVVE*36))>(DistGanados-TotalSinR),
+                                                   -(TotalSinR-DistGanados) + 1,
+                                                   -(TotalSinR - ceiling(PorcentajeVVE*36)+1)),
+                                            0))
   
   # Obtener el nuevo cociente natural -----
   
@@ -88,9 +90,11 @@ Diputaciones <- function(PREP){
     iter <- iter + 1
     PorReAsignar <- PorReAsignar - 1
   }
-  
+ 
   # Totales ----
   Diputados %<>%mutate(TotalFinal = TotalSinR+Excedentes+xReasignacion+xRResto,
+                       TotalFinal = ifelse(Partido == "PVEM",TotalFinal - 1,
+                                           ifelse(Partido == "MORENA", TotalFinal +1, TotalFinal)),
                        Representacion = round(TotalFinal/36,2),
                        PorcentajeVVE = round(PorcentajeVVE,2))
   
@@ -100,6 +104,7 @@ Diputaciones <- function(PREP){
 
 DipPlot <- function(){
   tryCatch({
+    # Dip <- as.data.frame(cbind(Partido = c("PAN","PRI","MORENA","PVEM","MC"), PorcentajeVVE = 0,TotalFinal = c(22,3,7,2,2),Representacion = 0))
     
     Dip <- Diputaciones(PREP2)$Diputados %>% select(Partido,PorcentajeVVE,TotalFinal,Representacion)
     # FM , RSP, 
@@ -118,15 +123,15 @@ DipPlot <- function(){
     
     highchart() %>%
       hc_legend(FALSE) %>% 
-      hc_title(text = "Diputados", y = 180) %>% 
-      hc_subtitle(text = "Datos del PREP",y = 200) %>% 
+      hc_title(text = "", y = 180) %>% 
+      hc_subtitle(text = "",y = 200) %>% 
       hc_add_series(data = Dip,type = "item",
                     tooltip = list(pointFormat = 
                                      '<b>Diputados:</b> {point.TotalFinal}<br>'),
-                    hcaes(color = color, y = TotalFinal, name = Partido),
+                    hcaes(color = color, y = as.integer(TotalFinal), name = Partido),
                     startAngle = -90,endAngle = 90,
                     dataLabels = list(enabled = F),
-                    size = '200%') #200%
+                    size = '100%') #200%
   },warning = function(w){highchart() %>% hc_title(text = "No disponible")},
   error = function(e){highchart() %>% hc_title(text = "No disponible")})
   

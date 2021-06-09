@@ -27,7 +27,7 @@ DistribuirReg <- function(PREP,MUN){
     melt(id.vars = c("MUNICIPIO","SECCION"), variable.name = "Partido",value.name = "Votos") %>% 
     group_by(MUNICIPIO,Partido) %>% summarise(Votos = sum(Votos, na.rm = T)) %>% ungroup()
   
-  
+
   # Obtener el porcentaje ya con los Votos Validos Emitidos ----
   
    ValidoEmitido <-
@@ -117,6 +117,12 @@ tryCatch({
 
 }
 
-# DistribuirReg(PREP,"LEON")
+# DistribuirReg(PREP,"SALAMANCA")
 # RegPlot("LEON")
+# RegPlot("IRAPUATO")
+# RegPlot("SALAMANCA")
+# RegPlot("GUANAJUATO")
+# RegPlot("CELAYA")
+# RegPlot("SILAO DE LA VICTORIA")
 
+r_o <- DistribuirReg(PREP,"SILAO DE LA VICTORIA")

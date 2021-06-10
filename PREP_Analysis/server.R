@@ -16,7 +16,7 @@ server <- function(input,output){
   output$a3 <- renderHighchart({RegPlot("CORTAZAR")})
   output$b3 <- renderHighchart({RegPlot("CUERAMARO")})
   output$c3 <- renderHighchart({RegPlot("DOCTOR MORA")})
-  output$d3 <- renderHighchart({RegPlot("DOLORES HIDALGO C.I.N")})
+  output$d3 <- renderHighchart({RegPlot("DOLORES HIDALGO CUNA DE LA INDEPENDENCIA NACIONAL")})
   output$e3 <- renderHighchart({RegPlot("GUANAJUATO")})
   output$a4 <- renderHighchart({RegPlot("HUANIMARO")})
   output$b4 <- renderHighchart({RegPlot("IRAPUATO")})
@@ -40,7 +40,7 @@ server <- function(input,output){
   output$c7 <- renderHighchart({RegPlot("SAN LUIS DE LA PAZ")})
   output$d7 <- renderHighchart({RegPlot("SANTA CATARINA")})
   output$e7 <- renderHighchart({RegPlot("SANTA CRUZ DE JUVENTINO ROSAS")})
-  output$a8 <- renderHighchart({RegPlot("SANTIAGO MARAVATÍO")})
+  output$a8 <- renderHighchart({RegPlot("SANTIAGO MARAVATIO")})
   
   output$b8 <- renderHighchart({RegPlot("SILAO DE LA VICTORIA")})
   output$c8 <- renderHighchart({RegPlot("TARANDACUAO")})

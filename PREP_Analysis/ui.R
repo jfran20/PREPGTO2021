@@ -75,16 +75,16 @@ ui <- fluidPage(
   
   # Footer ----
   HTML("<hr style = 'border-top: 2px solid rgb(25, 25, 25);'/>
-            <div>
-                <div class='column' style='float:left;text-align:rigth;margin-left:10px;'>
+            <div style="display: flex; justify-content: space-around;">
+                <div style="display: flex; flex-direction: column">
                     <a href = 'https://sbr-mx.com/' target = '_blank'> <img src = 'SBRimg' height = '25px' width ='50px' class='contact'></a>
                 </div>
                 
-                <div class='column' style='float:left;text-align:center;left:40%; position: absolute;'>
+                <div style="display: flex; flex-direction: column">
                     <p> 2021 <a href='https://sbr-mx.com/' style='color:black' target='_blank'> Statistical Bureau for Research </a></p> 
                 </div>
                 
-                <div class='column' style='float:right;text-align:rigth;margin-right:10px;'>
+                <div style="display: flex; flex-direction: column">
                     <a href = 'https://www.facebook.com/SBRmex' target = '_blank'> <img src = 'Faceimg' height = '25px' width ='25px' class='contact'></a>
                     <a href = 'https://twitter.com/sbr_mx' target = '_blank'> <img src = 'Tweetimg' height = '25px' width ='25px' class='contact'></a>
                 </div>

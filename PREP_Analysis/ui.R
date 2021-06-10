@@ -10,7 +10,7 @@ ui <- fluidPage(
         </div>"),
   
   # Charts ----
-  fluidRow(
+  fluidRow(style="display: flex; justify-content: space-around;", 
     column(2, 
            highchartOutput("a1",width = "100%", height = "260px") %>% withSpinner(color = "gray"),
            highchartOutput("a2", width = "100%", height = "260px") %>% withSpinner(color = "gray"),
@@ -75,16 +75,16 @@ ui <- fluidPage(
   
   # Footer ----
   HTML("<hr style = 'border-top: 2px solid rgb(25, 25, 25);'/>
-            <div style="display: flex; justify-content: space-around;">
-                <div style="display: flex; flex-direction: column">
+            <div style='display: flex; justify-content: space-around; align-content: center; margin: 0 0 2rem 0'>
+                <div style='display: flex; flex-direction: column; padding: 0 0 0 1rem;'>
                     <a href = 'https://sbr-mx.com/' target = '_blank'> <img src = 'SBRimg' height = '25px' width ='50px' class='contact'></a>
                 </div>
                 
-                <div style="display: flex; flex-direction: column">
+                <div style='display: flex; padding: 0 1rem 0 1rem;'>
                     <p> 2021 <a href='https://sbr-mx.com/' style='color:black' target='_blank'> Statistical Bureau for Research </a></p> 
                 </div>
                 
-                <div style="display: flex; flex-direction: column">
+                <div style='display: flex; flex-direction: column; padding: 0 1rem 0 0;'>
                     <a href = 'https://www.facebook.com/SBRmex' target = '_blank'> <img src = 'Faceimg' height = '25px' width ='25px' class='contact'></a>
                     <a href = 'https://twitter.com/sbr_mx' target = '_blank'> <img src = 'Tweetimg' height = '25px' width ='25px' class='contact'></a>
                 </div>

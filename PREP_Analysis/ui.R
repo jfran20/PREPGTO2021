@@ -10,7 +10,7 @@ ui <- fluidPage(
         </div>"),
   
   # Charts ----
-  fluidRow(style="display: flex; justify-content: space-around;", 
+  fluidRow(style="display: flex; flex-wrap: wrap; justify-content: space-around; overflow-x: hidden", 
     column(2, 
            highchartOutput("a1",width = "100%", height = "260px") %>% withSpinner(color = "gray"),
            highchartOutput("a2", width = "100%", height = "260px") %>% withSpinner(color = "gray"),

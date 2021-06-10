@@ -1,4 +1,4 @@
-PREP <- read.csv(".\\Datos\\GTO_AYUN_2021.csv", na.strings = c("Ilegible","Sin dato","","-","Sin datos"))
+PREP <- read.csv("./Datos/GTO_AYUN_2021.csv", na.strings = c("Ilegible","Sin dato","","-","Sin datos"))
 
 DistribuirReg <- function(PREP,MUN){
   
@@ -39,7 +39,7 @@ DistribuirReg <- function(PREP,MUN){
     
    # Obtener el número de regidores y Coeficiente Electoral ----
    
-   NumRegidores <- read.csv(".\\Datos\\11REG.csv", encoding = "UTF-8") %>%
+   NumRegidores <- read.csv("./Datos/11REG.csv", encoding = "UTF-8") %>%
      filter(MUNICIPIO == MUN) %>% pull(REG)
    
    CocienteElectoral <- sum(ValidoEmitido$Votos,na.rm = T)/NumRegidores

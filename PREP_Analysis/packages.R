@@ -1,0 +1,8 @@
+install.packages("highcharter")
+install.packages("shiny")
+install.packages("shinycssloaders")
+install.packages("magrittr")
+install.packages("dplyr")
+install.packages("reshape2")
+install.packages("hablar")
+install.packages("tidyr")

@@ -1,5 +1,5 @@
 
-PREP2 <- read.csv(".\\Datos\\GTO_DIP_LOC_2021.csv", na.strings = c("Ilegible","Sin dato","","-","Sin datos"))
+PREP2 <- read.csv("./Datos/GTO_DIP_LOC_2021.csv", na.strings = c("Ilegible","Sin dato","","-","Sin datos"))
 
 Diputaciones <- function(PREP){
   

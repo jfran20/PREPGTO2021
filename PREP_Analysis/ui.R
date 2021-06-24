@@ -3,7 +3,7 @@ ui <- fluidPage(
   tags$head(includeCSS('./style.css')),
   HTML("
         <h1 style='font-family:Antonio; font-size: 50px;'>Elecciones 2021</h1>
-        <h2><b>PREP</b> <i>Regidurias y Diputados GTO</i></h2>
+        <h2><b>Computos Distritales</b> <i>Regidurias y Diputados GTO</i></h2>
         <div class = 'topnav'>
               <a href= 'https://sbr-mx.com/' target='_blank'>SBR</a>
               <a href = 'https://politica.sbr-mx.com/' target='_blank'>Eleccion 2021</a>

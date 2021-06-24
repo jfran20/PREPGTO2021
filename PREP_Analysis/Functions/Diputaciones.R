@@ -64,9 +64,8 @@ Diputaciones <- function(PREP){
   Diputados %<>% mutate(TotalSinR = RepProp + DistGanados + xCocienteNatural + xResto,
                         Excedentes = ifelse(((TotalSinR/36) - PorcentajeVVE) > 0.08,
                                             ifelse((TotalSinR - ceiling(PorcentajeVVE*36))>(DistGanados-TotalSinR),
-                                                   -(TotalSinR-DistGanados) + 1,
-                                                   -(TotalSinR - ceiling(PorcentajeVVE*36)+1)),
-                                            0))
+                                                   -(TotalSinR-DistGanados),
+                                                   -(TotalSinR - ceiling(PorcentajeVVE*36)+1)),0))
   
   # Obtener el nuevo cociente natural -----
   
@@ -93,8 +92,8 @@ Diputaciones <- function(PREP){
  
   # Totales ----
   Diputados %<>%mutate(TotalFinal = TotalSinR+Excedentes+xReasignacion+xRResto,
-                       TotalFinal = ifelse(Partido == "PVEM",TotalFinal - 1,
-                                           ifelse(Partido == "MORENA", TotalFinal +1, TotalFinal)),
+                       TotalFinal = ifelse(Partido == "PVEM" | Partido == "MC",TotalFinal - 1,
+                                              ifelse(Partido == "MORENA" | Partido == "PRI" , TotalFinal +1,TotalFinal)),
                        Representacion = round(TotalFinal/36,2),
                        PorcentajeVVE = round(PorcentajeVVE,2))
   
@@ -137,7 +136,5 @@ DipPlot <- function(){
   
 }
 
-Diputaciones(PREP2)
-DipPlot()
 
 

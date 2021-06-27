@@ -122,7 +122,7 @@ DipPlot <- function(){
     
     highchart() %>%
       hc_legend(FALSE) %>% 
-      hc_title(text = "", y = 180) %>% 
+      hc_title(text = "Diputados Guanajuato", y = 180) %>% 
       hc_subtitle(text = "",y = 200) %>% 
       hc_add_series(data = Dip,type = "item",
                     tooltip = list(pointFormat = 
